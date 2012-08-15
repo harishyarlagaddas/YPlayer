@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Player</string>
+    <string name="music_tab_name">Music</string>
+    <string name="picture_tab_name">Pictures</string>
+    <string name="video_tab_name">Videos</string>
+    <string name="menu_refresh">Refresh Network Servers</string>
+    <string name="refresh_msg">Refreshing Network Servers . . .</string>
+    <string name="image_description">Thumb nail Image</string>
+    <string name="sever_selection_text">Selected Server:</string>
+    <string name="local_svr">Local Host</string>
+    <string name="select_svr">Select Server</string>
+    <string name="new_svr_added">New Server [%s] Added to the Network.</string>
+    <string name="exit">Exit</string>
+    <string name="progress_msg">Getting the Content from Selected Server. . .</string>
+    <string name="select_svr_err">Failed to select %s server. Sorry!!</string>
+    <string name="play_err">Error while playing the song [%s]</string>
+    <string name="end_list">Reached end of the list!!</string>
+    <string name="error_no_suitable_app">There is No Application on your device to play video. Try installing some good video player application to play videos.</string>
+    <string name="select_msg">Selecting the server. . .</string>
+    <string name="play_msg">Playing the selected content. . .</string>
+    <string name="play_list">Currently Playing Song</string>
+    <string name="play_list_err_msg">Current playing list is empty. Please create new one</string>
+    <string name="image_err">Failed to Display the selected Image. . .</string>
+    <string name="image_get">Getting the picture from selected server</string>
+    <string name="image_end">No More Images to display towards this end. . . Try swiping the other side. . .</string>
+    <string name="download_all_songs">Download All Songs</string>
+    <string name="download_all_videos">Download All Videos</string>
+    <string name="download_all_images">Download All Pictures</string>
+    <string name="downloading">Downloading to %s</string>
+</resources>

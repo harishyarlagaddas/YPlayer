@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <item android:id="@+id/menu_id_refresh"
+        android:title="@string/menu_refresh"/>
+        
+    <item android:id="@+id/menu_id_select_svr"
+        android:title="@string/select_svr"/>
+    
+    <item android:id="@+id/menu_id_download_all_songs"
+        android:title="@string/download_all_songs"
+        android:visible="false"/>
+    
+    <item android:id="@+id/menu_id_download_all_videos"
+        android:title="@string/download_all_videos"
+        android:visible="false"/>
+    
+    <item android:id="@+id/menu_id_download_all_images"
+        android:title="@string/download_all_images"
+        android:visible="false"/>
+        
+    <item android:id="@+id/menu_id_exit"
+        android:title="@string/exit"/>
+        
+</menu>

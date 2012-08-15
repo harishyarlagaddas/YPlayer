@@ -1,0 +1,33 @@
+# Specify all the compile time options inthis file. This file will be included by Makefile.include to specify the options
+# set in this file.
+
+
+# Set the compiler flags accordingly.
+CPPFLAGS += -ggdb -DLOG # Just added during development to save time while giving make command.
+ifeq ($(DLNA_DEBUG),1)
+CPPFLAGS += -g -DLOG
+endif
+
+ifneq ($(DLNA_WARNINGS),1)
+CPPFLAGS += -Werror
+endif
+
+#MEM_TRACE option is need for knowning the memroy allocations/deallocations and the memroy leaks if any.
+ifeq ($(DLNA_MEM_TRACE),1)
+CPPFLAGS += -DMEM_TRACE
+endif
+
+# set the command line flags correspondigly.
+#LOG option is need to enable writing the log into the file.
+ifeq ($(DLNA_LOG),1)
+CPPFLAGS += -DLOG
+endif
+#CONSOLE option will print the log messages on screen along with writing in to the file.
+ifeq ($(DLNA_CONSOLE),1)
+CPPFLAGS += -DCONSOLE
+endif
+
+#LOG_BROADCAST_MESSAGES option enables to log the broadcasting messages.
+ifeq ($(DLNA_LOG_BROADCAST_MESSAGES),1)
+CPPFLAGS += -DLOG_BROADCAST_MESSAGES
+endif

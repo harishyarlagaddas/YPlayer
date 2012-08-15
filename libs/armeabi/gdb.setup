@@ -1,0 +1,2 @@
+set solib-search-path ./obj/local/armeabi
+directory /home/hyarlagadda/android-sdk-linux/android-ndk-r8b/platforms/android-14/arch-arm/usr/include bionic \ /home/hyarlagadda/android-sdk-linux/android-ndk-r8b/sources/cxx-stl/system/include jni

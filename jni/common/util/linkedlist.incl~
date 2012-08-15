@@ -1,0 +1,205 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                                                                           *
+ * This software has been authored by Eminent Technologies.                  *
+ *                                                                           *
+ * The Title, ownership, rights, and intellectual property rights in and to  *
+ * the  software  shall remain  with Eminent Technologies.  The Software is  *
+ * protected  and  subject to copyright  protection  in accordance with the  *
+ * applicable copyright laws and copyright treaties.                         *
+ *                                                                           *
+ * No  part  of this software may be reproduced, retransmitted, distributed, *
+ * disassembled or lent without the  prior written permission of  copyright  *
+ * holder.                                                                   *
+ *            Copyright (c) 2009 Eminent Technologies.                       *
+ *                          All Rights Reserved.                             *
+ *                                                                           *
+ * For details contact : harish.yarlagaddas@gmail.com                        *
+ *                                                                           *
+ *  File: linkedlist.incl                                                    *
+ *                                                                           *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+
+#include "linkedlist.h"
+#include "../../os/os.h"
+
+template <class aInputClass>
+cLinkedList<aInputClass>::cLinkedList()
+{
+	cvHeadPtr = NULL;
+	cvTailPtr = NULL;
+	cvCount = 0;
+}
+template <class aInputClass>
+cLinkedList<aInputClass>::~cLinkedList()
+{
+	while(cvHeadPtr){
+		LinkedListStruct *sTemp = cvHeadPtr;
+		cvHeadPtr = sTemp ->spNext;
+		//os_free(sTemp->Data);
+		os_free((int8*)sTemp);
+	}
+}
+
+template <class aInputClass>
+int32 cLinkedList<aInputClass>::Add(aInputClass& aInputObj)
+{
+	LinkedListStruct *sAddEntry = (LinkedListStruct*)os_malloc(sizeof(LinkedListStruct));
+	os_memcpy(&sAddEntry->Data,&aInputObj,sizeof(aInputObj));
+	sAddEntry->spNext = NULL;
+	if(!cvHeadPtr){
+		cvHeadPtr = cvTailPtr = sAddEntry;
+	}else{
+	      cvTailPtr->spNext = sAddEntry;
+	      cvTailPtr = sAddEntry;
+	}
+	cvCount++;
+	return SUCCESS;
+}
+
+template <class aInputClass>
+int32 cLinkedList<aInputClass>::AddAtStart(aInputClass& aInputObj)
+{
+	LinkedListStruct *sAddEntry = (LinkedListStruct*)os_malloc(sizeof(LinkedListStruct));
+	os_memcpy(&sAddEntry->Data,&aInputObj,sizeof(aInputObj));
+	sAddEntry->spNext = NULL;
+	if(!cvHeadPtr){
+		cvHeadPtr = cvTailPtr = sAddEntry;
+	}else{
+		sAddEntry->spNext = cvHeadPtr;
+		cvHeadPtr = sAddEntry;
+	}
+	cvCount++;
+	return SUCCESS;
+}
+
+template <class aInputClass>
+int32 cLinkedList<aInputClass>::RemoveAtEnd(aInputClass& aInputObj)
+{
+	LinkedListStruct *sTemp = NULL,*sPrev = NULL;
+
+	sTemp = sPrev = cvHeadPtr;
+	if(NULL == cvHeadPtr){
+		return FAILURE;
+	}
+	while(sTemp != cvTailPtr){
+	    sPrev = sTemp;
+	    sTemp = sTemp->spNext;
+	}
+	os_memcpy(&aInputObj,&sTemp->Data,sizeof(aInputObj));
+	if(sPrev != sTemp){
+		sPrev->spNext = NULL;
+		cvTailPtr = sPrev;
+	}else{
+	      cvTailPtr = cvHeadPtr = NULL;
+	}
+	os_free((int8*)sTemp);
+	cvCount--;
+	return SUCCESS;
+}
+
+template <class aInputClass>
+int32 cLinkedList<aInputClass>::RemoveAtStart(aInputClass& aInputObj)
+{
+	LinkedListStruct *sTemp = cvHeadPtr;
+	if(NULL == cvHeadPtr){
+		return FAILURE;
+	}
+	os_memcpy(&aInputObj,&cvHeadPtr->Data,sizeof(aInputObj));
+	if(NULL == sTemp->spNext){
+		cvHeadPtr = cvTailPtr = NULL;
+	}else{
+		cvHeadPtr = sTemp->spNext;
+	}
+	os_free((int8*)sTemp);
+	cvCount--;
+	return SUCCESS;
+}
+
+template <class aInputClass>
+int32 cLinkedList<aInputClass>::GetElementAtIndex(aInputClass& aInputObj,const int32 aIndex)
+{
+	int32 iCount = 1;
+	LinkedListStruct *sTemp = cvHeadPtr;
+	if(aIndex > cvCount || 0 == aIndex){
+		return FAILURE;
+	}
+	while(iCount != aIndex){
+		if(sTemp != NULL){
+			sTemp = sTemp->spNext;
+		}else{
+			return FAILURE;
+		}
+		iCount ++;
+	}
+	if(sTemp != NULL){
+		os_memcpy(&aInputObj,&(sTemp->Data),sizeof(aInputObj));
+		return SUCCESS;
+	}
+	return FAILURE;
+}
+
+template <class aInputClass>
+int32 cLinkedList<aInputClass>::GetElementAtStart(aInputClass& aInputObj)
+{
+	if(NULL == cvHeadPtr){
+		return FAILURE;
+	}
+	os_memcpy(&aInputObj,&cvHeadPtr->Data,sizeof(aInputObj));
+	return SUCCESS;
+}
+
+template <class aInputClass>
+int32 cLinkedList<aInputClass>::GetElementAtEnd(aInputClass& aInputObj)
+{
+	if(NULL == cvTailPtr){
+		return FAILURE;
+	}
+	os_memcpy(&aInputObj,&cvTailPtr->Data,sizeof(aInputObj));
+	return SUCCESS;
+}
+
+template <class aInputClass>
+void cLinkedList<aInputClass>::DestroyList()
+{
+	while(cvHeadPtr){
+		LinkedListStruct *sTemp = cvHeadPtr;
+		cvHeadPtr = sTemp ->spNext;
+		//os_free(sTemp->Data);
+		os_free((int8*)sTemp);
+	}
+	cvCount = 0;
+	cvHeadPtr = cvTailPtr = NULL;
+}
+
+template <class aInputClass>
+int32 cLinkedList<aInputClass>::GetNumberOfElements()
+{
+	return cvCount;
+}
+
+template <class aInputClass>
+int32 cLinkedList<aInputClass>::RemoveElementAtIndex(const int32 aIndex)
+{
+	int32 iCount = 1;
+	LinkedListStruct *sTemp = cvHeadPtr, *sPrev = cvHeadPtr;
+	if(aIndex > cvCount || 0 == aIndex){
+		return FAILURE;
+	}
+	while(iCount != aIndex){
+		sPrev = sTemp;
+		sTemp = sTemp->spNext;
+		iCount ++;
+	}
+	if(cvHeadPtr == sTemp){
+		cvHeadPtr = cvHeadPtr->spNext;
+	}else if(cvTailPtr == sTemp){
+		sPrev->spNext = sTemp->spNext;
+		cvTailPtr = sPrev;
+	}else{
+		sPrev->spNext = sTemp->spNext;
+	}
+	os_free((int8*)sTemp);
+	cvCount--;
+	return SUCCESS;
+}

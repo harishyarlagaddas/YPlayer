@@ -1,0 +1,4 @@
+set solib-search-path ./obj/local/armeabi
+directory /home/hyarlagadda/android-sdks/android-ndk-r8/platforms/android-14/arch-arm/usr/include bionic \ /home/hyarlagadda/android-sdks/android-ndk-r8/sources/cxx-stl/system/include jni
+file ./obj/local/armeabi/app_process
+target remote :5039

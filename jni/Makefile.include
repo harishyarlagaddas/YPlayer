@@ -1,0 +1,84 @@
+# Setting the compiler related options and compilation flags.
+CC = gcc
+CPLUSPLUS = g++
+AR = ar
+CPPFLAGS += -Wall -O0 -fPIC -fomit-frame-pointer -DLINUX -DINOTIFY -static
+
+# remove directory options.
+RMOPTIONS = "--ignore-fail-on-non-empty"
+
+#set the include directory where to search for the header files.
+INCLUDE_DIRS += -I $(ROOTDIR)os/
+INCLUDE_DIRS += -I $(ROOTDIR)os/linux/
+INCLUDE_DIRS += -I $(ROOTDIR)common/include
+INCLUDE_DIRS += -I $(ROOTDIR)common/socketimpl/
+INCLUDE_DIRS += -I $(ROOTDIR)common/log/
+INCLUDE_DIRS += -I $(ROOTDIR)common/util/
+INCLUDE_DIRS += -I $(ROOTDIR)common/upnp/
+INCLUDE_DIRS += -I $(ROOTDIR)common/protocols/http/
+INCLUDE_DIRS += -I $(ROOTDIR)common/protocols/http/
+INCLUDE_DIRS += -I $(ROOTDIR)common/database
+INCLUDE_DIRS += -I $(ROOTDIR)common/parser/
+INCLUDE_DIRS += -I $(ROOTDIR)third_party/database/sqlite/
+INCLUDE_DIRS += -I $(ROOTDIR)third_party/transcoders/jpeg/
+
+
+# Set the Output directory for storing the targets.ROOTDIR is set inside the Makefile in which this is included.
+OUTPUTDIR = $(ROOTDIR)output/
+
+TARGETS = $(TARGETLIB) $(TARGETEXE)
+
+# Update the cpp flags with the include directories.
+CPPFLAGS += $(INCLUDE_DIRS)
+
+# Compile time options will be specified inside this Makefile.options. So just include this.
+include $(ROOTDIR)Makefile.options
+
+#set the object directory for storing the intermediate object files..ROOTDIR is set inside the Makefile in which this is included.
+OBJECTDIRS_CPP = $(ROOTDIR)objs/
+OBJECTDIRS_C = $(ROOTDIR)objs/
+
+# All object files for the files mentioned above.
+OBJECTS = $(addprefix $(OBJECTDIRS_CPP),$(addsuffix .o,$(basename $(notdir $(SOURCES)))))
+
+default: $(TARGETS)
+
+all: clean default
+
+# Extract directory names from sources
+SOURCEDIR = $(sort $(dir $(SOURCES)))
+
+# Add the extracted directories as include directories.
+CPPFLAGS += $(addprefix -I,$(SOURCEDIR))
+
+# Tell the implicit rules, where to search for the C sources.
+vpath %.cpp $(SOURCEDIR)
+vpath %.c $(SOURCEDIR)
+
+$(TARGETLIB): $(OBJECTDIRS_CPP) $(OBJECTDIRS_C) $(OUTPUTDIR) $(OBJECTS)
+	$(AR) rcs $@ $(OBJECTS)
+
+$(TARGETEXE): $(OBJECTDIRS_CPP) $(OBJECTDIRS_C) $(OUTPUTDIR) $(OBJECTS)
+	$(CPLUSPLUS) -o $@ $(OBJECTS) $(LIBDIRS) $(LIBS)
+
+$(OBJECTDIRS_CPP)%.o: %.cpp
+	$(CPLUSPLUS) $(CPPFLAGS) -c -o $@ $<
+
+$(OBJECTDIRS_C)%.o: %.c
+	$(CC) $(CPPFLAGS) -c -o $@ $<
+
+# Make object directories as required.
+$(OBJECTDIRS_CPP):
+	if [ ! -d "$@" ]; then mkdir $@; fi
+
+# Make output directories as required.
+$(OUTPUTDIR):
+	if [ ! -d "$@" ]; then mkdir $@; fi
+
+cleanall::
+	rm -r -f $(OUTPUTDIR)
+	rm -r -f $(OBJECTDIRS_CPP)
+	rm -r -f $(OBJECTS) $(TARGETS) *~
+	-for dir in $(OBJECTDIRS); do if [ -d "$${dir}" ]; then rmdir $(RMOPTIONS) "$${dir}" ; fi; done
+clean::
+	rm -r -f $(OBJECTS) $(TARGETS) *~

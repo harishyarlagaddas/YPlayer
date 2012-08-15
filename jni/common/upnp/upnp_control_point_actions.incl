@@ -1,0 +1,56 @@
+#ifndef UPNP_CONTROL_POINT_ACTIONS_INCL
+#define UPNP_CONTROL_POINT_ACTIONS_INCL
+
+#include "../include/basic_datatypes.h"
+
+typedef enum{
+	BROWSE_REQUEST = 0,
+	SEARCH_REQUEST,
+	BROWSE_METADATA,
+	BROWSE_DIRECT_CHILDREN
+}UPnPCPTags;
+
+static const int8 *gUPnPCPTags[] =
+{
+/* BROWSE_REQUEST */
+"Browse",
+/* SEARCH_REQUEST */
+"Search",
+/* BROWSE_METADATA */
+"BrowseMetadata",
+/* BROWSE_DIRECT_CHILDREN */
+"BrowseDirectChildren"
+};
+
+typedef enum{
+	UPNP_CP_POST_REQ = 0,
+	UPNP_CP_BROWSE_ACTION
+}UPnPCPActions;
+
+static const int8 *gUPnPCPActions[] =
+{
+/* UPNP_CP_POST_REQ */
+"POST %s HTTP/1.1\r\n\
+SOAPACTION: \"urn:schemas-upnp-org:service:ContentDirectory:1#%s\"\r\n\
+CONTENT-TYPE: text/xml ; charset=\"utf-8\"\r\n\
+HOST: %s:%d\r\n\
+Content-Length: %d\r\n\
+\r\n",
+
+/* UPNP_CP_BROWSE_ACTION */
+"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n\
+<s:Envelope s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\">\n\
+   <s:Body>\n\
+      <u:Browse xmlns:u=\"urn:schemas-upnp-org:service:ContentDirectory:1\">\n\
+         <ObjectID>%s</ObjectID>\n\
+         <BrowseFlag>%s</BrowseFlag>\n\
+         <Filter>%s</Filter>\n\
+         <StartingIndex>%d</StartingIndex>\n\
+         <RequestedCount>%d</RequestedCount>\n\
+         <SortCriteria>%s</SortCriteria>\n\
+      </u:Browse>\n\
+   </s:Body>\n\
+</s:Envelope>"
+};
+
+#endif /* UPNP_CONTROL_POINT_ACTIONS_INCL */

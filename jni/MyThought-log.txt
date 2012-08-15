@@ -1,0 +1,103 @@
+[MyThought LOG][Time:16:16:18][ThreadID:27993]cUPnPBase::RefreshAtiveIPAddress Number of ActiveEthernetInterfaces:[2]
+[MyThought LOG][Time:16:16:18][ThreadID:27993]cUPnPBase::RefreshAtiveIPAddress localhost address found 127.0.0.1
+[MyThought LOG][Time:16:16:18][ThreadID:27993]cUPnPDiscovery::SetDiscoveryForServer Setting the discovery for ControlPoint
+[MyThought LOG][Time:16:16:18][ThreadID:27993]cUPnPBase::GetActiveIPAddrAtIndex OUT Returning 105.52.91.151
+[MyThought LOG][Time:16:16:18][ThreadID:27993]Starting the Discovery on address: 105.52.91.151
+[MyThought LOG][Time:16:16:18][ThreadID:27993]cSocket::InitializeParams Initializing with Address [105.52.91.151] port[1900]
+[MyThought LOG][Time:16:16:18][ThreadID:27993]cSocket::InitializeParams Initializing with Address [239.255.255.250] port[1900]
+[MyThought LOG][Time:16:16:18][ThreadID:27993]cSocket::SetMembershipAddr stored the Membership Address [105.52.91.151]
+[MyThought LOG][Time:16:16:18][ThreadID:27993]cSocket::SetFilteringUDPMessageString stored UDP Filtering String [urn:schemas-upnp-org:device:MediaServer:1]
+[MyThought LOG][Time:16:16:18][ThreadID:27993]cSocket::SetFilteringUDPMessageString stored UDP Filtering String [urn:schemas-upnp-org:device:MediaRenderer:1]
+[MyThought LOG][Time:16:16:18][ThreadID:27993]cSocket::UDPUnBlockingListenCall Setting the socket option for adding the membership sValue1.vpPtr[105.52.91.151] sValue2.vpPtr[239.255.255.250] 
+[MyThought LOG][Time:16:16:18][ThreadID:27993]cUPnPDiscovery::StartUpnpDiscovery sending M-SEARCH packets on IP[105.52.91.151]
+[MyThought LOG][Time:16:16:18][ThreadID:27995]cSocket::ReceiveBroadcastMessages Matching string found. Hence intimating to listener
+[MyThought LOG][Time:16:16:18][ThreadID:27993]cSocket::SetFilteringUDPMessageString stored UDP Filtering String [urn:schemas-upnp-org:device:MediaServer:1]
+[MyThought LOG][Time:16:16:18][ThreadID:27993]cSocket::SetFilteringUDPMessageString stored UDP Filtering String [urn:schemas-upnp-org:device:MediaRenderer:1]
+[MyThought LOG][Time:16:16:18][ThreadID:27995]cSocket::ReceiveBroadcastMessages Matching string found. Hence intimating to listener
+[MyThought LOG][Time:16:16:18][ThreadID:27997]cSocket::ReceiveBroadcastMessages Matching string found. Hence intimating to listener
+[MyThought LOG][Time:16:16:18][ThreadID:27999]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse IN for message from: 105.52.91.84
+[MyThought LOG][Time:16:16:18][ThreadID:27999]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse identified as server
+[MyThought LOG][Time:16:16:18][ThreadID:27999]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse adding the server
+[MyThought LOG][Time:16:16:18][ThreadID:27999]cUPnPControlPoint::AddServer IN URL = http://105.52.91.84:8895/deviceDescription/03739698-f802-3bf5-98c7-d645c816da02
+[MyThought LOG][Time:16:16:18][ThreadID:27999]cSocket::InitializeParams Initializing with Address [105.52.91.84] port[8895]
+[MyThought LOG][Time:16:16:19][ThreadID:27997]cSocket::ReceiveBroadcastMessages Matching string found. Hence intimating to listener
+[MyThought LOG][Time:16:16:19][ThreadID:28000]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse IN for message from: 105.52.91.84
+[MyThought LOG][Time:16:16:19][ThreadID:28000]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse identified as server
+[MyThought LOG][Time:16:16:19][ThreadID:28000]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse adding the server
+[MyThought LOG][Time:16:16:19][ThreadID:28000]cUPnPControlPoint::AddServer IN URL = http://105.52.91.84:17676/smp_6_
+[MyThought LOG][Time:16:16:19][ThreadID:28000]cSocket::InitializeParams Initializing with Address [105.52.91.84] port[17676]
+[MyThought LOG][Time:16:16:20][ThreadID:27997]cSocket::ReceiveBroadcastMessages Matching string found. Hence intimating to listener
+[MyThought LOG][Time:16:16:20][ThreadID:28002]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse IN for message from: 105.52.91.137
+[MyThought LOG][Time:16:16:20][ThreadID:28002]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse identified as renderer
+[MyThought LOG][Time:16:16:20][ThreadID:28002]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse adding the renderer
+[MyThought LOG][Time:16:16:20][ThreadID:28002]cSocket::InitializeParams Initializing with Address [5848c84a] port[2869]
+[MyThought LOG][Time:16:16:20][ThreadID:28002]cSocket::CreateTCPClientSocket Socket connect system call failed. retval[-1]
+[MyThought LOG][Time:16:16:20][ThreadID:28002]cUPnPControlPoint::ComposeAndSendGETRequest: get Sock Addr Error
+[MyThought LOG][Time:16:16:20][ThreadID:28002]cUPnPControlPoint::GetDeviceInfo: Error in composing and sending the GET request
+[MyThought LOG][Time:16:16:20][ThreadID:27997]cSocket::ReceiveBroadcastMessages Matching string found. Hence intimating to listener
+[MyThought LOG][Time:16:16:20][ThreadID:28003]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse IN for message from: 105.52.91.84
+[MyThought LOG][Time:16:16:20][ThreadID:28003]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse identified as server
+[MyThought LOG][Time:16:16:20][ThreadID:28003]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse adding the server
+[MyThought LOG][Time:16:16:20][ThreadID:28003]cUPnPControlPoint::AddServer IN URL = http://105.52.91.84:8895/deviceDescription/03739698-f802-3bf5-98c7-d645c816da02
+[MyThought LOG][Time:16:16:20][ThreadID:27997]cSocket::ReceiveBroadcastMessages Matching string found. Hence intimating to listener
+[MyThought LOG][Time:16:16:20][ThreadID:28004]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse IN for message from: 105.52.91.137
+[MyThought LOG][Time:16:16:20][ThreadID:28004]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse identified as renderer
+[MyThought LOG][Time:16:16:20][ThreadID:28004]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse adding the renderer
+[MyThought LOG][Time:16:16:20][ThreadID:28004]cSocket::InitializeParams Initializing with Address [5848c84a] port[2869]
+[MyThought LOG][Time:16:16:20][ThreadID:28004]cSocket::CreateTCPClientSocket Socket connect system call failed. retval[-1]
+[MyThought LOG][Time:16:16:20][ThreadID:28004]cUPnPControlPoint::ComposeAndSendGETRequest: get Sock Addr Error
+[MyThought LOG][Time:16:16:20][ThreadID:28004]cUPnPControlPoint::GetDeviceInfo: Error in composing and sending the GET request
+[MyThought LOG][Time:16:16:21][ThreadID:27997]cSocket::ReceiveBroadcastMessages Matching string found. Hence intimating to listener
+[MyThought LOG][Time:16:16:21][ThreadID:27997]cSocket::ReceiveBroadcastMessages Matching string found. Hence intimating to listener
+[MyThought LOG][Time:16:16:21][ThreadID:28006]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse IN for message from: 105.52.91.84
+[MyThought LOG][Time:16:16:21][ThreadID:28006]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse identified as renderer
+[MyThought LOG][Time:16:16:21][ThreadID:28006]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse adding the renderer
+[MyThought LOG][Time:16:16:21][ThreadID:28005]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse IN for message from: 105.52.91.84
+[MyThought LOG][Time:16:16:21][ThreadID:28006]cSocket::InitializeParams Initializing with Address [105.52.91.84] port[9500]
+[MyThought LOG][Time:16:16:21][ThreadID:28005]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse identified as renderer
+[MyThought LOG][Time:16:16:21][ThreadID:28005]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse adding the renderer
+[MyThought LOG][Time:16:16:21][ThreadID:27997]cSocket::ReceiveBroadcastMessages Matching string found. Hence intimating to listener
+[MyThought LOG][Time:16:16:21][ThreadID:28007]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse IN for message from: 105.52.91.31
+[MyThought LOG][Time:16:16:21][ThreadID:28007]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse identified as renderer
+[MyThought LOG][Time:16:16:21][ThreadID:28007]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse adding the renderer
+[MyThought LOG][Time:16:16:21][ThreadID:28007]cSocket::InitializeParams Initializing with Address [105.52.91.31] port[5200]
+[MyThought LOG][Time:16:16:21][ThreadID:28007]cUPnPControlPoint::ParseDeviceInfo "deviceType" didn't match with server or renderer
+[MyThought LOG][Time:16:16:21][ThreadID:28007]cUPnPControlPoint::GetDeviceInfo: ParseDeviceInfo Error
+[MyThought LOG][Time:16:16:22][ThreadID:27997]cSocket::ReceiveBroadcastMessages Matching string found. Hence intimating to listener
+[MyThought LOG][Time:16:16:22][ThreadID:28008]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse IN for message from: 105.52.91.32
+[MyThought LOG][Time:16:16:22][ThreadID:28008]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse identified as renderer
+[MyThought LOG][Time:16:16:22][ThreadID:28008]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse adding the renderer
+[MyThought LOG][Time:16:16:22][ThreadID:28008]cSocket::InitializeParams Initializing with Address [105.52.91.32] port[5200]
+[MyThought LOG][Time:16:16:22][ThreadID:28008]cUPnPControlPoint::ParseDeviceInfo "deviceType" didn't match with server or renderer
+[MyThought LOG][Time:16:16:22][ThreadID:28008]cUPnPControlPoint::GetDeviceInfo: ParseDeviceInfo Error
+[MyThought LOG][Time:16:16:22][ThreadID:27997]cSocket::ReceiveBroadcastMessages Matching string found. Hence intimating to listener
+[MyThought LOG][Time:16:16:22][ThreadID:28009]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse IN for message from: 105.52.91.84
+[MyThought LOG][Time:16:16:22][ThreadID:28009]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse identified as server
+[MyThought LOG][Time:16:16:22][ThreadID:28009]cUPnPDiscovery::VerifyUDPMessageForMSearchResponse adding the server
+[MyThought LOG][Time:16:16:22][ThreadID:28009]cUPnPControlPoint::AddServer IN URL = http://105.52.91.84:17676/smp_6_
+[MyThought LOG][Time:16:16:23][ThreadID:27993]cUPnPDiscovery::StartUpnpDiscovery Closing the UDP Broadcast socket after MX interval mentioned in the broadcast packet
+[MyThought LOG][Time:16:16:32][ThreadID:27994]cSocket::InitializeParams Initializing with Address [105.52.91.84] port[17676]
+[MyThought LOG][Time:16:16:32][ThreadID:27994]cSocket::InitializeParams Initializing with Address [105.52.91.84] port[17676]
+[MyThought LOG][Time:16:16:37][ThreadID:27995]cSocket::ReceiveBroadcastMessages Matching string found. Hence intimating to listener
+[MyThought LOG][Time:16:16:37][ThreadID:28010]cUPnPDiscovery::VerifyUDPMessageForNotify IN for message from: 105.52.91.84
+[MyThought LOG][Time:16:16:37][ThreadID:28010]cUPnPDiscovery::VerifyUDPMessageForNotify identified as server from the message
+[MyThought LOG][Time:16:16:37][ThreadID:28010]cUPnPDiscovery::VerifyUDPMessageForNotify message came for ssdp:alive
+[MyThought LOG][Time:16:16:37][ThreadID:28010]cUPnPDiscovery:VerifyUDPMessageForNotify adding the server
+[MyThought LOG][Time:16:16:37][ThreadID:28010]cUPnPControlPoint::AddServer IN URL = http://105.52.91.84:8895/deviceDescription/03739698-f802-3bf5-98c7-d645c816da02
+[MyThought LOG][Time:16:16:37][ThreadID:27995]cSocket::ReceiveBroadcastMessages Matching string found. Hence intimating to listener
+[MyThought LOG][Time:16:16:37][ThreadID:28011]cUPnPDiscovery::VerifyUDPMessageForNotify IN for message from: 105.52.91.84
+[MyThought LOG][Time:16:16:37][ThreadID:28011]cUPnPDiscovery::VerifyUDPMessageForNotify identified as server from the message
+[MyThought LOG][Time:16:16:37][ThreadID:28011]cUPnPDiscovery::VerifyUDPMessageForNotify message came for ssdp:alive
+[MyThought LOG][Time:16:16:37][ThreadID:28011]cUPnPDiscovery:VerifyUDPMessageForNotify adding the server
+[MyThought LOG][Time:16:16:37][ThreadID:28011]cUPnPControlPoint::AddServer IN URL = http://105.52.91.84:8895/deviceDescription/03739698-f802-3bf5-98c7-d645c816da02
+[MyThought LOG][Time:16:16:37][ThreadID:27995]cSocket::ReceiveBroadcastMessages Matching string found. Hence intimating to listener
+[MyThought LOG][Time:16:16:37][ThreadID:28012]cUPnPDiscovery::VerifyUDPMessageForNotify IN for message from: 105.52.91.84
+[MyThought LOG][Time:16:16:37][ThreadID:28012]cUPnPDiscovery::VerifyUDPMessageForNotify identified as server from the message
+[MyThought LOG][Time:16:16:37][ThreadID:28012]cUPnPDiscovery::VerifyUDPMessageForNotify message came for ssdp:alive
+[MyThought LOG][Time:16:16:37][ThreadID:28012]cUPnPDiscovery:VerifyUDPMessageForNotify adding the server
+[MyThought LOG][Time:16:16:37][ThreadID:28012]cUPnPControlPoint::AddServer IN URL = http://105.52.91.84:8895/deviceDescription/03739698-f802-3bf5-98c7-d645c816da02
+[MyThought LOG][Time:16:16:38][ThreadID:27994]cSocket::InitializeParams Initializing with Address [105.52.91.84] port[17676]
+[MyThought LOG][Time:16:16:42][ThreadID:27994]cSocket::InitializeParams Initializing with Address [105.52.91.84] port[17676]
+[MyThought LOG][Time:16:16:42][ThreadID:27994]cUPnPControlPoint::CopyObjectsToUser: Ignoring the folder as it matched with "Pictures" Name
+[MyThought LOG][Time:16:16:46][ThreadID:27994]cSocket::InitializeParams Initializing with Address [105.52.91.84] port[17676]
+[MyThought LOG][Time:16:16:48][ThreadID:27993]cUPnPDiscovery::StopUPnPDiscovery Closing the sockets on IP[105.52.91.151] BroadcastSockID[7] ListenSocketID[8]
