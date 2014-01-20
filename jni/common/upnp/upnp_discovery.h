@@ -97,6 +97,9 @@ private:
 
 	/* Flag to indicate for which purpose this discovery module is being used. (1. Server 2. Control Point) */
 	flag cvDiscoveryForServer;
+	
+	// sMiLo
+	int8 *cvLocalAddressPtr;
 
 	cLinkedList<InterfaceSockParmStruct> cvInterfaceSockParmStruct;
 	flag cvDiscoveryActive;

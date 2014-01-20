@@ -64,6 +64,7 @@ public class ContentProvider{
                 Cursor c1 = null;
                 String[] cursor_cols = {
                         MediaStore.Audio.Media._ID,
+                        MediaStore.Audio.Media.ALBUM_ID,
                         MediaStore.Audio.Media.ALBUM,
                         MediaStore.Audio.Media.TITLE,
                         MediaStore.Audio.Media.DATA,
@@ -73,6 +74,7 @@ public class ContentProvider{
                 c1 = gContext.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, cursor_cols, null, null,
                                                                     MediaStore.Audio.Media.TITLE + " ASC");  
                 if(c1 != null && c1.moveToFirst()){
+                	long albumId = c1.getLong(c1.getColumnIndex(android.provider.MediaStore.Audio.Media.ALBUM_ID));
                     int ci = c1.getColumnIndex(MediaStore.Audio.Media._ID);
                     int ci1 = c1.getColumnIndex(MediaStore.Audio.Media.TITLE);
                     int ci2 = c1.getColumnIndex(MediaStore.Audio.Media.DATA);
@@ -82,7 +84,8 @@ public class ContentProvider{
                          * */
                         /* Prepare albumart URI for this id */
                         Uri sArtworkUri = Uri.parse("content://media/external/audio/albumart");
-                        Uri thumbUri = ContentUris.withAppendedId(sArtworkUri, c1.getInt(ci));
+                        //Uri thumbUri = ContentUris.withAppendedId(sArtworkUri, c1.getInt(ci));
+                        Uri thumbUri = ContentUris.withAppendedId(sArtworkUri, albumId);
                         String title = c1.getString(ci1);
                         String path = c1.getString(ci2);
                         MediaItem tempItem = new MediaItem(title,path,thumbUri.toString(),Consts.MUSIC);

@@ -28,4 +28,5 @@
     <string name="download_all_videos">Download All Videos</string>
     <string name="download_all_images">Download All Pictures</string>
     <string name="downloading">Downloading to %s</string>
+    <string name="create_demo_failed">Creating of device failed, check the log!</string>
 </resources>
