@@ -8,6 +8,9 @@ cUPnPDiscovery::cUPnPDiscovery()
 	cvDiscoveryActive = true;
 	cvDiscoveryForServer = true; /* By default we will assume the discovery is for server.. */
 	cvControPointInterfacePtr = NULL;
+	
+	// sMiLo
+	cvLocalAddressPtr = NULL;
 }
 
 cUPnPDiscovery::~cUPnPDiscovery()
@@ -25,6 +28,10 @@ cUPnPDiscovery::~cUPnPDiscovery()
 			os_delete(sIFSockParmStructTemp.ListenSocket);
 		}
 	}
+	
+	// sMiLo
+	if (cvLocalAddressPtr != NULL)
+		os_free(cvLocalAddressPtr);
 }
 
 void cUPnPDiscovery::SetDiscoveryForServer(void)
@@ -66,6 +73,13 @@ void cUPnPDiscovery::StartUPnPDiscovery()
 			continue;
 		}
 		os_memcpy(sIFSockParmStruct.InterfaceIPAddr,cpTempURL,os_strlen(cpTempURL));
+		
+		// sMiLo : Save local ip address
+		if (cvLocalAddressPtr == NULL) {
+			cvLocalAddressPtr = (int8*)os_malloc(MAXIMUM_IP_SIZE);
+			os_memcpy(cvLocalAddressPtr,cpTempURL,os_strlen(cpTempURL));
+		}
+		
 		LOGD("Starting the Discovery on address: %s",cpTempURL);
 		/* Create UDP Broad Cast socket for broadcasting the NOTIFY(in case of Server) & M-SEARCH (in case of Control Point) Messages. */
 		sIFSockParmStruct.BroadCastSocket = os_new(cSocket,());
@@ -762,6 +776,13 @@ ReturnStatus cUPnPDiscovery::VerifyUDPMessageForNotify(IN UDPSocketInfo &aUDPSoc
 	ReturnStatus status = SUCCESS;
 	flag server = false, renderer = false;
 	LOGD("cUPnPDiscovery::VerifyUDPMessageForNotify IN for message from: %s",aUDPSockParam.PeerIPPtr);
+	
+	// sMiLo : if local ip address, ignore it.
+	if (os_strncmp(cvLocalAddressPtr, aUDPSockParam.PeerIPPtr, os_strlen(aUDPSockParam.PeerIPPtr)) == 0) {
+		LOGD("cUPnPDiscovery::VerifyUDPMessageForNotify IN Skip to add server: %s", aUDPSockParam.PeerIPPtr);
+		goto VerifyUDPMessageForNotify_Exit;
+	}
+	
 	if(NULL == os_strcasestr(udpMessage,DIGITAL_MEDIA_SERVER_STRING) && (NULL == os_strcasestr(udpMessage,DIGITAL_MEDIA_RENDERER_STRING))){
 		  LOGE("cUPnPDiscovery::VerifyUDPMessageForNotify failed as it was unable to find server string or renderer string in the message");
 		  return FAILURE;
@@ -961,6 +982,13 @@ ReturnStatus cUPnPDiscovery::VerifyUDPMessageForMSearchResponse(IN UDPSocketInfo
 	ReturnStatus status = SUCCESS;
 	flag server = false, renderer = false;
 	LOGD("cUPnPDiscovery::VerifyUDPMessageForMSearchResponse IN for message from: %s",aUDPSockParam.PeerIPPtr);
+	
+	// sMiLo : if local ip address, ignore it.
+	if (os_strncmp(cvLocalAddressPtr, aUDPSockParam.PeerIPPtr, os_strlen(aUDPSockParam.PeerIPPtr)) == 0) {
+		LOGD("cUPnPDiscovery::VerifyUDPMessageForMSearchResponse IN Skip to add server: %s", aUDPSockParam.PeerIPPtr);
+		goto VerifyUDPMessageForMSearchResponse_Exit;
+	}
+	
 	if(NULL == os_strcasestr(udpMessage,"HTTP/1.1 200 OK")){
 		LOGE("cUPnPDiscovery::VerifyUDPMessageForMSearchResponse failed as it was unable to find HTTP/1.1 200 OK in the message");
 		status = FAILURE;
